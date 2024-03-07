@@ -16,18 +16,12 @@ class UserSeeder extends Seeder
     {
         // use seeder table
         DB::table('users')->insert(
-            // [
-            //     'name' => 'Admin Atresna',
-            //     'email' => 'admin@atresna.com',
-            //     'profile' => '',
-            //     'password' => Hash::make('killingme12'),
-            // ],
             [
-                'name' => 'Adnan',
-                'email' => 'adnan@ciptaanekaair.co.id',
+                'name' => 'Admin Atresna',
+                'email' => 'admin@atresna.com',
                 'profile' => '',
-                'password' => Hash::make('Ciptawatertech2024'),
-            ]
+                'password' => Hash::make('killingme12'),
+            ],
         );
     }
 }

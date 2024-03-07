@@ -20,6 +20,7 @@ class CompanyInfoSeeder extends Seeder
             'company_slogan' => 'Total Solution For Your Digital Company',
             'company_address' => 'Jl. Maju No.1 Tidak Mundur, Kec. Sukses, Kab. Berhasil, 12201',
             'company_logo' => 'logo.png',
+            'company_favicon' => 'logo.png',
             'company_phone' => '08557456858',
             'company_phone1' => '08557456858',
             'company_email' => 'support@atresna.com',

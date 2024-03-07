@@ -159,4 +159,10 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard/Master/Project/Index', ['data' => MasterDataController::ambilSemuaData(new Project(), ['customer']), 'customer' => MasterDataController::ambilSemuaData(new Customer()), 'message' => null]);
     }
+
+    // konfigurasi meta site
+    public function metaSitePages()
+    {
+        return Inertia::render('Dashboard/Konfigurasi/CompanyMeta/Index');
+    }
 }

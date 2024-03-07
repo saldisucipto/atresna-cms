@@ -29,34 +29,74 @@
         <!-- Main menu  -->
         <div class="mx-3 grid grid-flow-col grid-cols-7">
             <div class="col-span-2 p-5 overflow-hidden">
-                <div class="flex flex-col justify-start gap-2">
-                    <div
-                        v-if="this.imageBaru != null"
-                        class="flex justify-between gap-2"
-                    >
-                        <img
-                            class="rounded-md mx-auto max-h-52"
-                            :src="imagesShow(this.imageBaru)"
-                            alt=""
-                        />
+                <div class="flex flex-col justify-start gap-5">
+                    <div class="flex flex-col justify-start gap-3">
+                        <div class="font-semibold text-xl text-gray-700">
+                            Company Logo
+                        </div>
+                        <div
+                            v-if="this.imageBaru != null"
+                            class="flex justify-between gap-2"
+                        >
+                            <img
+                                class="rounded-md mx-auto max-h-52"
+                                :src="imagesShow(this.imageBaru)"
+                                alt=""
+                            />
+                        </div>
+                        <div
+                            v-if="this.data.company_logo == 'logo.png'"
+                            class="mx-auto"
+                        >
+                            <img
+                                class="rounded-md max-w-sm mx-auto max-h-52"
+                                :src="'/assets/img/logo.png'"
+                            />
+                        </div>
+                        <div v-else>
+                            <img
+                                class="rounded-md max-w-sm mx-auto max-h-52"
+                                :src="
+                                    '/storage/img/company/' +
+                                    this.data.company_logo
+                                "
+                                alt=""
+                            />
+                        </div>
                     </div>
-                    <div
-                        v-if="this.data.company_logo == 'logo.png'"
-                        class="mx-auto"
-                    >
-                        <img
-                            class="rounded-md max-w-sm mx-auto max-h-52"
-                            :src="'/assets/img/logo.png'"
-                        />
-                    </div>
-                    <div v-else>
-                        <img
-                            class="rounded-md max-w-sm mx-auto max-h-52"
-                            :src="
-                                '/storage/img/company/' + this.data.company_logo
-                            "
-                            alt=""
-                        />
+                    <div class="flex flex-col justify-start gap-3">
+                        <div class="font-semibold text-xl text-gray-700">
+                            Company Favicon
+                        </div>
+                        <div
+                            v-if="this.logoFavBaru != null"
+                            class="flex justify-between gap-2"
+                        >
+                            <img
+                                class="rounded-md mx-auto max-h-52"
+                                :src="imagesShow(this.logoFavBaru)"
+                                alt=""
+                            />
+                        </div>
+                        <div
+                            v-if="this.data.company_favicon == 'logo.png'"
+                            class="mx-auto"
+                        >
+                            <img
+                                class="rounded-md max-w-sm mx-auto max-h-52"
+                                :src="'/assets/img/logo.png'"
+                            />
+                        </div>
+                        <div v-else>
+                            <img
+                                class="rounded-md max-w-sm mx-auto max-h-52"
+                                :src="
+                                    '/storage/img/company/favicon/' +
+                                    this.data.company_favicon
+                                "
+                                alt=""
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,7 +125,7 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-gray-700 font-semibold"
-                            >Company Slogn</label
+                            >Company Slogan</label
                         >
                         <input
                             class="drop-shadow-sm border py-2 px-3 rounded-md focus:outline-none text-sm"
@@ -218,6 +258,26 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-2">
+                        <label class="text-gray-700 font-semibold"
+                            >Company Favicon</label
+                        >
+                        <input
+                            class="text-sm"
+                            type="file"
+                            @input="
+                                form.company_favicon = $event.target.files[0];
+                                uploadFavLogo();
+                            "
+                        />
+                        <div
+                            class="text-xs px-1 text-red-600"
+                            v-if="errors.company_favicon"
+                        >
+                            {{ errors.company_favicon }}
+                        </div>
+                    </div>
+
                     <button
                         class="bg-blue-400 hover:bg-blue-700 text-white py-1 rounded-md drop-shadow-sm"
                         type="submit"
@@ -242,6 +302,7 @@ export default {
     data() {
         return {
             imageBaru: null,
+            logoFavBaru: null,
         };
     },
     setup() {
@@ -253,6 +314,7 @@ export default {
             company_npwp: "",
             company_address: "",
             company_logo: "",
+            company_favicon: "",
             company_slogan: "",
         });
 
@@ -276,6 +338,9 @@ export default {
     methods: {
         uploadFoto() {
             this.imageBaru = this.form.company_logo;
+        },
+        uploadFavLogo() {
+            this.logoFavBaru = this.form.company_favicon;
         },
         imagesShow(img) {
             return URL.createObjectURL(img);

@@ -43,6 +43,11 @@ class KonfigurasiDataController extends Controller
             $logo = new FileProcess($request->file('company_logo'), $data['company_name'], 'company');
             $companyInfo->company_logo = $logo->uploadFoto();
         }
+        if ($request->file('company_favicon')) {
+            FileProcess::deleteFoto($companyInfo->company_favicon, 'company');
+            $logo = new FileProcess($request->file('company_favicon'), $data['company_name'], 'company/favicon');
+            $companyInfo->company_favicon = $logo->uploadFoto();
+        }
         $companyInfo->update();
         return redirect()->back()->with('message', 'Berhasil Update Data');
     }

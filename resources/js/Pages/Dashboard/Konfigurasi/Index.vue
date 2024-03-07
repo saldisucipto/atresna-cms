@@ -10,12 +10,9 @@
             <card-konf-data :linkTujuan="'company'" :iconData="'fa-building'"
                 >Informasi Company</card-konf-data
             >
-            <!-- <card-master-data :linkTujuan="'servis'" :iconData="'fa-users-cog'"
-                >Master Jasa & Sevices</card-master-data
+            <card-konf-data :linkTujuan="'company-meta'" :iconData="'fa-atlas'"
+                >Company Meta Site</card-konf-data
             >
-            <card-master-data :linkTujuan="'customer'" :iconData="'fa-users'"
-                >Master Customer</card-master-data -->
-
             <!-- End Card Master Data -->
         </div>
         <!-- End Main Menu -->

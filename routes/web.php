@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\DB;
 // auth route
 Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
-
-
 // end auth route
 
 // dashboard
@@ -75,10 +73,12 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
         });
     });
 
-
+    // Konfigurasi
     Route::prefix('/konfigurasi')->group(function () {
         Route::get('/', [DashboardController::class, 'konfigurasiPages']);
         Route::get('/company', [DashboardController::class, 'konfigurasiCompany']);
+
+        Route::get('/company-meta', [DashboardController::class, 'metaSitePages']);
     });
 
     Route::prefix('/pages')->group(function () {
@@ -201,51 +201,4 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
 
 // Front Pages Routes
-Route::get('/', [FrontPagesControlller::class, 'index1'])->name('index');
-// Route::get('/home1', [FrontPagesControlller::class, 'index1'])->name('index1');
-Route::get('/about-us', [FrontPagesControlller::class, 'about']);
-Route::get('/about-us/our-history', [FrontPagesControlller::class, 'history']);
-Route::get('/about-us/vision-mission', [FrontPagesControlller::class, 'visimisi']);
-Route::get('/about-us/who-we-are', [FrontPagesControlller::class, 'whoweare']);
-
-
-Route::prefix('/projects')->group(function () {
-    Route::get('/', [FrontPagesControlller::class, 'projects']);
-});
-
-// Hirring
-Route::prefix('/hiring')->group(function () {
-    Route::get('/', [FrontPagesControlller::class, 'hiring']);
-});
-
-
-// Produk Route
-Route::prefix('/products')->group(function () {
-    // Produk Show
-    Route::get('/', [FrontPagesControlller::class, 'produkPages'])->name('produk');
-    Route::get('/{slugs}', [FrontPagesControlller::class, 'produkDetailsPages']);
-
-    // Produk By Kategori
-    Route::get('/kategori/{slugs}', [FrontPagesControlller::class, 'produkByKategori']);
-    Route::get('/brand/{slugs}', [FrontPagesControlller::class, 'produkByBrand']);
-});
-
-// Servis Route
-Route::prefix('/servis')->group(function () {
-    Route::get('/', [FrontPagesControlller::class, 'servisPages'])->name('servis');
-    Route::get('/{slugs}', [FrontPagesControlller::class, 'servisDetailPages']);
-});
-
-// News and Blog
-Route::prefix('/news')->group(function () {
-    Route::get('/', [FrontPagesControlller::class, 'newsPages'])->name('news');
-    Route::get('/{slugs}', [FrontPagesControlller::class, 'newssDetailPages']);
-});
-
-
-// Slugs
-Route::get('/{slugs}', [FrontPagesControlller::class, 'brand']);
-
-
-// Search Product
-Route::post('/products/search-product', [FrontPagesControlller::class, 'searchProduct']);
+Route::get('/', [FrontPagesControlller::class, 'index'])->name('index');
