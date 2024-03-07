@@ -16,6 +16,7 @@ use App\Models\CompanyHistory;
 use App\Models\CompanyInfo;
 use App\Models\Customer;
 use App\Models\DownloadCenter;
+use App\Models\MetaSite;
 use App\Models\PanelUtama;
 use App\Models\Project;
 use App\Models\Servis;
@@ -163,6 +164,6 @@ class DashboardController extends Controller
     // konfigurasi meta site
     public function metaSitePages()
     {
-        return Inertia::render('Dashboard/Konfigurasi/CompanyMeta/Index');
+        return Inertia::render('Dashboard/Konfigurasi/CompanyMeta/Index', ['meta_data' => MasterDataController::ambilSemuaData(new MetaSite())]);
     }
 }

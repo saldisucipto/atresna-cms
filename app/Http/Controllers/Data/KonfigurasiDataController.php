@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Data;
 use App\Http\Controllers\Controller;
 use App\Http\Utils\FileProcess;
 use App\Models\CompanyInfo;
+use App\Models\MetaSite;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class KonfigurasiDataController extends Controller
 {
@@ -50,5 +52,17 @@ class KonfigurasiDataController extends Controller
         }
         $companyInfo->update();
         return redirect()->back()->with('message', 'Berhasil Update Data');
+    }
+
+
+    protected function metaUpdate(Request $request)
+    {
+        $dataParsing = $request->all();
+        $metaData = MetaSite::find(1);
+        $metaData->meta_title = Str::limit($dataParsing['meta_title'], 65, '');
+        $metaData->meta_description = Str::limit($dataParsing['meta_description'], 320, '');
+        $metaData->meta_keyword = Str::limit($dataParsing['meta_keyword'], 255, '');
+        $metaData->update();
+        return redirect()->back()->with('message', 'Berhasil Update Meta Site');
     }
 }

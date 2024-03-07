@@ -185,6 +185,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
     Route::prefix('/konfigurasi')->group(function () {
         Route::post('/update', [KonfigurasiDataController::class, 'updateCompanyInfo']);
+        Route::post('/meta/update', [KonfigurasiDataController::class, 'metaUpdate']);
     });
 
     Route::prefix('/static-content')->group(function () {
