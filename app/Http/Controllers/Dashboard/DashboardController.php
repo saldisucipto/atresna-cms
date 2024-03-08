@@ -24,6 +24,7 @@ use App\Models\Slider;
 use App\Models\Sosmed;
 use App\Models\StaticPages;
 use App\Models\WhyChooseUs;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -165,5 +166,11 @@ class DashboardController extends Controller
     public function metaSitePages()
     {
         return Inertia::render('Dashboard/Konfigurasi/CompanyMeta/Index', ['meta_data' => MasterDataController::ambilSemuaData(new MetaSite())]);
+    }
+
+    // blog news
+    public function createBlogPages()
+    {
+        return Inertia::render('Dashboard/BlogNews/Create');
     }
 }

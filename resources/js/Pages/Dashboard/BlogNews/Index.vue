@@ -31,12 +31,12 @@
                 class="drop-shadow-sm border py-2 px-3 rounded-md focus:outline-none text-sm w-72"
                 placeholder="Search Blog and News"
             />
-            <button
-                @click="showModalCreate"
+            <a
+                href="/dashboard/blog-news/create"
                 class="bg-blue-500 px-2 py-2 rounded-md text-sm text-gray-50"
             >
-                <i class="fas fa-plus"></i> Buat Data Baru
-            </button>
+                <i class="fas fa-plus"></i> Buat Postingan Baru
+            </a>
         </div>
         <!-- Main menu  -->
         <div

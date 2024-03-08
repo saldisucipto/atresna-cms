@@ -85,7 +85,10 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
         Route::get('/', [DashboardController::class, 'staticPages']);
     });
 
-    Route::get('blog-news', [DashboardController::class, 'blogPages']);
+    Route::prefix('/blog-news')->group(function () {
+        Route::get('/', [DashboardController::class, 'blogPages']);
+        Route::get('/create', [DashboardController::class, 'createBlogPages']);
+    });
 
     // profile
     Route::get('profile', [DashboardController::class, 'profilePages']);
